@@ -1,0 +1,78 @@
+﻿<Window x:Class="WPFAN_Students.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFAN_Students"
+        mc:Ignorable="d"
+        Title="Student data" Height="450" Width="800">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="30"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<Menu FontSize="13" FontFamily="Arial" >
+			<Menu.ItemsPanel>
+				<ItemsPanelTemplate>
+					<DockPanel HorizontalAlignment="Left"/>
+				</ItemsPanelTemplate>
+			</Menu.ItemsPanel>
+			<MenuItem Header="File" VerticalAlignment="Center">
+				<MenuItem Click="miSave_Click" Header="Save"/>
+				<Separator/>
+				<MenuItem Header="Exit" Click="miExit_Click"/>
+			</MenuItem>
+			<MenuItem Header="Query" VerticalAlignment="Center">
+				<MenuItem Header="All data" Click="miAllData_Click" />
+				<MenuItem Header="e-mail addresses" Click="miEmailList_Click"/>
+			</MenuItem>
+			<MenuItem Header="Add/Modify" VerticalAlignment="Center" GotFocus="miAddModify_GotFocus">
+				<MenuItem Header="Add student data" x:Name="miAddStudent" Click="miStudentDataAdd_Click"/>
+				<MenuItem Header="Modify student data" x:Name="miModifyStudent"   Click="miStudentDataModify_Click"/>
+				<MenuItem Header="Add study programme data" Click="miStudyProgrammeAdd_Click"/>
+				<MenuItem Header="Modify study programme data" x:Name="miModifySP"  Click="miStudyProgrammeModify_Click" />
+			</MenuItem>
+		</Menu>
+		<!-- Show all data -->
+		<DataGrid x:Name="dgAllData"
+                  Grid.Row="1"
+                  FontSize="13"
+                  FontFamily="Arial"
+                  Visibility="Collapsed"
+                  ItemsSource="{Binding}" />
+		<!-- Show all data end -->
+		<!-- e-mail list -->
+		<TextBox x:Name="tbEmailList"
+                 Grid.Row="1"
+                 FontSize="13"
+                 FontFamily="Arial"
+                 Visibility="Collapsed"
+                 IsReadOnly="True" 
+                 AllowDrop="False"/>
+		<!-- e-mail list end -->
+		<!-- Add student data -->
+		<local:ucAddStudent 
+            x:Name="ucAddStudent"
+            Visibility="Collapsed"
+            Grid.Row="1"/>
+		<!-- Add student data end -->
+		<!-- Modify student data -->
+		<local:ucModifyStudent 
+            x:Name="ucModifyStudent"
+            Visibility="Collapsed"
+            Grid.Row="1"/>
+		<!-- Modify student data end -->
+		<!-- Add study progamme data -->
+		<local:ucAddStudent 
+        x:Name="ucAddStudyProgramme"
+        Visibility="Collapsed"
+        Grid.Row="1"/>
+		<!-- Add study programme data end -->
+		<!-- Modify student data -->
+		<local:ucModifyStudyProgramme 
+        x:Name="ucModifyStudyProgramme"
+        Visibility="Collapsed"
+        Grid.Row="1"/>
+		<!-- Modify student data end -->
+	</Grid>
+</Window>
